@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="hth.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A spooky Halloween story about the haunted Holloway House and echoing footsteps.">
+    <title>The Echoing Footsteps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+     <link rel="icon" type="image/png" href="gab.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #000000 0%, #2a0a0a 50%, #000000 100%); 
+            color: #f0f0f0;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 0, 0, 0.1) 0%, transparent 70%); 
+            pointer-events: none;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Creepster', cursive;
+            font-size: 3em;
+            color: #ff6600;
+            text-shadow: 2px 2px 4px #000, 0 0 10px #ff6600;
+            animation: flicker 2s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        p {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #660000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+            text-shadow: 1px 1px 2px #000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        p:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.8);
+        }
+        p:first-of-type {
+            background-image: url('https://i.imgur.com/pumpkin.png'); 
+            background-repeat: no-repeat;
+            background-position: top right;
+            background-size: 50px;
+        }
+        .scare-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px #000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            transition: background 0.3s ease;
+        }
+        .scare-button:hover {
+            background: #cc0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+        .hidden-scare {
+            display: none;
+            text-align: center;
+            font-size: 2em;
+            color: #ff0000;
+            animation: scare 0.5s ease;
+        }
+        @keyframes scare {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.5em;
+            color: #ff6600;
+            text-shadow: 0 0 5px #ff6600;
+        }
+        
+        .bat {
+            position: absolute;
+            top: 10%;
+            left: -50px;
+            font-size: 2em;
+            color: #333;
+            animation: fly 10s linear infinite;
+        }
+        .bat:nth-child(2) { top: 30%; animation-delay: 2s; }
+        .bat:nth-child(3) { top: 50%; animation-delay: 4s; }
+        @keyframes fly {
+            0% { left: -50px; }
+            100% { left: 100vw; }
+        }
+        br {
+            display: none;
+        }
+        
+        .home-link {
+            background-color: #4B0000; 
+            color: #fff; 
+            border: 2px solid #8B4513; 
+            padding: 10px 20px; 
+            margin: 10px; 
+            cursor: pointer; 
+            font-family: 'Creepster', cursive;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #4B0000;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .home-link:hover { 
+            background-color: #2F1B14; 
+            box-shadow: 0 0 15px #4B0000;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 2em; }
+            p { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">Home</a>
+    <div class="bat">🦇</div>
+    <div class="bat">🦇</div>
+    <div class="bat">🦇</div>
+
+    <h1>The Haunted House: "The Echoing Footsteps"</h1>
+
+    <button class="scare-button" onclick="showScare()">Dare to Scare Yourself?</button>
+    <div id="scare" class="hidden-scare">BOO! 👻</div>
+
+    <p>It was the night before Halloween, and five friends dared each other to spend the night in the infamous Holloway House. The house had stood empty for over a century, and rumors swirled around it. Some said it was cursed, others claimed it was haunted by the spirits of the Holloway family, who had mysteriously disappeared one night, leaving only their bloodstains behind.</p>
+
+    <p>Eager to prove their bravery, they entered the house, their flashlights casting long shadows on the cracked walls. The front door creaked shut behind them with a noise that seemed too loud for the silence of the night.</p>
+
+    <p>At first, nothing happened. The house was eerily still, the air heavy with dust and the scent of mold. But as they began to explore the rooms, strange things started happening. Footsteps echoed through the halls soft, yet unmistakable.</p>
+
+    <p>“Who’s messing around?” asked Jake, looking nervously around the empty hallway.</p>
+
+    <p>No one answered. They all heard it, too the faint sound of footsteps from the floor above them.</p>
+
+    <p>They decided to investigate. Up the stairs they went, one by one, their hearts racing. The steps grew louder, more distinct, until they were almost running. The moment they reached the top, the footsteps stopped.</p>
+
+    <p>The silence that followed was suffocating. Then, a loud bang came from behind a closed door. Terrified, they flung the door open, but there was nothing there. Nothing but a dusty old mirror. And in the reflection, they saw something they shouldn’t have figures, standing in the background of the room, staring at them.</p>
+
+    <p>The door slammed shut.</p>
+
+    <p>By the time the sun came up, the house was empty again. The five friends left, but none of them ever spoke about what they saw. Every year, on the night before Halloween, the footsteps could still be heard echoing through the house—waiting for the next group to dare enter.</p>
+
+    <div class="footer">Happy Halloween! 🎃👻🦇</div>
+
+    <script>
+        function showScare() {
+            const scare = document.getElementById('scare');
+            scare.style.display = 'block';
+            setTimeout(() => {
+                scare.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

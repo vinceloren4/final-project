@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scary Story Generator</title>
+    <link rel="icon" type="image/png" href="gab.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap'); 
+        body { 
+            font-family: 'Creepster', cursive; 
+            background: linear-gradient(135deg, #000000, #1a0a0a, #4B0000, #8B4513, #2F1B14); 
+            color: #fff; 
+            text-align: center; 
+            padding: 20px; 
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1, h2 { 
+            text-shadow: 2px 2px 4px #000, 0 0 10px #4B0000; 
+        }
+        .slide { 
+            display: none; 
+            padding: 20px; 
+            border: 2px solid #4B0000; 
+            margin: 20px auto; 
+            max-width: 600px; 
+            background-color: rgba(0, 0, 0, 0.95); 
+            box-shadow: 0 0 20px #4B0000, inset 0 0 20px rgba(75, 0, 0, 0.3); 
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .slide:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px #4B0000, inset 0 0 30px rgba(75, 0, 0, 0.5);
+        }
+        .active { display: block; }
+        button, .nav-link { 
+            background-color: #4B0000; 
+            color: #fff; 
+            border: 2px solid #8B4513; 
+            padding: 10px 20px; 
+            margin: 10px; 
+            cursor: pointer; 
+            font-family: 'Creepster', cursive;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #4B0000;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        button:hover, .nav-link:hover { 
+            background-color: #2F1B14; 
+            box-shadow: 0 0 15px #4B0000;
+            transform: translateY(-2px);
+        }
+        .pumpkin { 
+            width: 50px; 
+            height: 50px; 
+            background: url('https://i.imgur.com/pumpkin.png') no-repeat center; 
+            background-size: cover;
+            display: inline-block;
+            margin: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; } 
+        }
+        .flicker { animation: flicker 2s infinite; }
+        
+        .bat {
+            position: absolute;
+            top: 10%;
+            left: -50px;
+            font-size: 2em;
+            color: #4B0000;
+            animation: fly 10s linear infinite;
+            opacity: 0.7;
+        }
+        .bat:nth-child(2) { top: 30%; animation-delay: 2s; }
+        .bat:nth-child(3) { top: 50%; animation-delay: 4s; }
+        .bat:nth-child(4) { top: 70%; animation-delay: 6s; }
+        @keyframes fly {
+            0% { left: -50px; transform: rotate(0deg); }
+            100% { left: 100vw; transform: rotate(360deg); }
+        }
+        
+        .ghost {
+            position: absolute;
+            bottom: 10%;
+            right: -50px;
+            font-size: 1.5em;
+            color: #fff;
+            animation: drift 12s linear infinite;
+            opacity: 0.5;
+        }
+        .ghost:nth-child(2) { bottom: 30%; animation-delay: 3s; }
+        @keyframes drift {
+            0% { right: -50px; transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { right: 100vw; transform: translateY(0px); }
+        }
+        
+        .spooky-text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 1.5em;
+            color: #8B4513;
+            text-shadow: 0 0 10px #4B0000;
+        }
+        
+        @media (max-width: 600px) {
+            .pumpkin { width: 40px; height: 40px; }
+            .bat, .ghost { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bat">🦇</div>
+    <div class="bat">🦇</div>
+    <div class="bat">🦇</div>
+    <div class="bat">🦇</div>
+    <div class="ghost">👻</div>
+    <div class="ghost">👻</div>
+
+    <h1 class="flicker">Scary Story Generator</h1>
+    <p class="spooky-text">Navigate through the slides to build your spooky tale!</p>
+    <div class="pumpkin"></div><div class="pumpkin"></div><div class="pumpkin"></div>
+
+    <div id="slide1" class="slide active">
+        <h2>Slide 1: Choose Your Setting</h2>
+        <p>You find yourself in a...</p>
+        <a href="hundtedhouse.html" class="nav-link">Hundted House</a>
+        <a href="tdf.html" class="nav-link">Dark Forest</a>
+        <a href="taa.html" class="nav-link">Abandoned Asylum</a>
+        <a href="aboutus.html" class="nav-link">About Us</a>
+    </div>
+
+    <div id="slide2" class="slide">
+        <h2>Slide 2: What Do You Hear?</h2>
+        <p>As you enter the <span id="setting"></span>, you hear...</p>
+        <button onclick="nextSlide(2, 'whispers')">Whispers</button>
+        <button onclick="nextSlide(2, 'footsteps')">Footsteps</button>
+        <button onclick="nextSlide(2, 'laughter')">Laughter</button>
+    </div>
+
+    <div id="slide3" class="slide">
+        <h2>Slide 3: What Appears?</h2>
+        <p>Suddenly, <span id="sound"></span> grow louder, and you see...</p>
+        <button onclick="nextSlide(3, 'a shadow')">A Shadow</button>
+        <button onclick="nextSlide(3, 'a ghost')">A Ghost</button>
+        <button onclick="nextSlide(3, 'eyes in the dark')">Eyes in the Dark</button>
+    </div>
+
+    <div id="slide4" class="slide">
+        <h2>Slide 4: The Climax</h2>
+        <p>The <span id="appearance"></span> approaches, and...</p>
+        <p id="story"></p>
+        <button onclick="restart()">Generate Another Story</button>
+    </div>
+
+    <div class="footer">Happy Halloween! 🎃👻🦇</div>
+
+    <script>
+        let story = { setting: '', sound: '', appearance: '' };
+
+        function nextSlide(current, choice) {
+            document.getElementById('slide' + current).classList.remove('active');
+            if (current === 1) story.setting = choice;
+            else if (current === 2) story.sound = choice;
+            else if (current === 3) {
+                story.appearance = choice;
+                generateEnding();
+            }
+            document.getElementById('slide' + (current + 1)).classList.add('active');
+            updatePlaceholders();
+        }
+
+        function updatePlaceholders() {
+            document.getElementById('setting').textContent = story.setting;
+            document.getElementById('sound').textContent = story.sound;
+            document.getElementById('appearance').textContent = story.appearance;
+        }
+
+        function generateEnding() {
+            const endings = {
+                'haunted house': {
+                    'whispers': { 'a shadow': 'the shadow whispers your name, revealing it\'s your long-lost twin who died tragically. You scream as it pulls you into the darkness!' },
+                    'a ghost': 'the ghost floats through walls, moaning about unfinished business. It possesses you, and you feel your body no longer yours!',
+                    'eyes in the dark': 'the eyes belong to a family of rats, but they speak in human voices, cursing you for entering their domain!'
+                },
+                'dark forest': {
+                    'footsteps': { 'a shadow': 'the shadow is a werewolf, and it howls as it chases you through the trees. You trip and feel claws on your back!' },
+                    'a ghost': 'the ghost is a lost hiker, warning you of a curse. Suddenly, vines wrap around your legs, pulling you underground!',
+                    'eyes in the dark': 'the eyes are from an ancient tree spirit, and it demands a sacrifice. Branches lash out, scratching your skin!'
+                },
+                'abandoned asylum': {
+                    'laughter': { 'a shadow': 'the shadow laughs maniacally, revealing itself as a patient who escaped. It locks you in a padded cell forever!' },
+                    'a ghost': 'the ghost is a doctor, injecting you with an invisible serum. You feel your mind unraveling into madness!',
+                    'eyes in the dark': 'the eyes are from hidden cameras, and a voice announces: "You\'re the next experiment." Doors slam shut!'
+                }
+            };
+            const ending = endings[story.setting] && endings[story.setting][story.sound] && endings[story.setting][story.sound][story.appearance] ? endings[story.setting][story.sound][story.appearance] : 'something terrifying happens, and you never escape!';
+            document.getElementById('story').textContent = ending;
+        }
+
+        function restart() {
+            story = { setting: '', sound: '', appearance: '' };
+            document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
+            document.getElementById('slide1').classList.add('active');
+            updatePlaceholders();
+            document.getElementById('story').textContent = '';
+        }
+    </script>
+</body>
+</html>
